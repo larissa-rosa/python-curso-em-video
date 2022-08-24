@@ -1,20 +1,19 @@
 from random import randint
-jogador = 0
-escolha = 'par'
 venceu = 0
-jogo = True
 
-while jogo == True:
+while True:
     jogador = int(input('Digite um número: '))
-    escolha = str(input('Par ou ímpar? [P/I] ')).strip()
+    escolha = str(input('Par ou ímpar? [P/I] ')).strip()[0]
+    while not escolha in 'PpIi':
+        print('Valor inválido.')
+        escolha = str(input('Par ou ímpar? [P/I] ')).strip()[0]
     computador = randint(0, 100)
     total = jogador + computador
 
     print(f'Você jogou {jogador} e o computador jogou {computador}.')
     print(f'O total deu {total}.')
 
-
-    if computador % 2 == 0 and jogador % 2 == 0 or computador % 2 != 0 and jogador % 2 != 0:
+    if total % 2 == 0:
         resultado = 'par'
         print('Deu par!')
     else:
@@ -26,5 +25,5 @@ while jogo == True:
         venceu += 1
     else:
         print(('Você perdeu!'))
-        jogo = False
         print(f'Game over! Você venceu {venceu} vezes!')
+        break
